@@ -1,0 +1,18 @@
+.broker-intro { margin: -4px 0 12px; color: #8295a8; font-size: 15px; }
+.broker-research { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.broker-research article { padding: 16px; background: #0d192a; border: 1px solid #294158; border-top: 2px solid #d6a15f; }
+.broker-research header { display: flex; justify-content: space-between; gap: 14px; }
+.broker-research header span { color: #71869a; font: 12px 'IBM Plex Mono'; text-transform: uppercase; }
+.broker-research h4 { margin: 5px 0 0; font-size: 25px; }
+.broker-research header > div:last-child { text-align: right; }
+.broker-research header b { display: block; color: #59c2ae; font: 13px 'IBM Plex Mono'; text-transform: uppercase; }
+.broker-research header strong { display: block; margin-top: 4px; color: #eef3f7; font-size: 23px; }
+.broker-research h5 { margin: 15px 0 6px; color: #d7a463; font-size: 16px; }
+.broker-research p, .broker-research dd { color: #94a5b5; font-size: 14px; line-height: 1.55; }
+.broker-research dl { margin: 12px 0; }
+.broker-research dl > div { padding: 9px 0; border-top: 1px solid #21374d; }
+.broker-research dt { color: #667d91; font: 12px 'IBM Plex Mono'; text-transform: uppercase; }
+.broker-research dd { margin: 4px 0 0; }
+.broker-research a { color: #65c0b1; font: 12px 'IBM Plex Mono'; text-decoration: none; }
+.broker-research-detail{margin:16px 0 24px;border:1px solid #294158;background:#0a1625}.broker-research-detail>summary{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:15px 17px;cursor:pointer;list-style:none}.broker-research-detail>summary::-webkit-details-marker{display:none}.broker-research-detail>summary span{color:#eef3f7;font-size:18px;font-weight:700}.broker-research-detail>summary b{color:#d7a463;font:12px 'IBM Plex Mono'}.broker-research-detail>summary small{grid-column:1/-1;color:#71869a;font-size:12px}.broker-research-detail[open]>summary{border-bottom:1px solid #294158}.broker-research-detail .broker-intro{padding:0 16px}.broker-research-detail .broker-research{padding:0 16px 16px}
+@media (max-width: 900px) { .broker-research { grid-template-columns: 1fr; } }

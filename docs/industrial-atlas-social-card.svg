@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">Industrial Atlas</title>
+  <desc id="desc">Fundamental research from physical supply-chain change to an investable conclusion.</desc>
+  <rect width="1280" height="640" fill="#071421"/>
+  <path d="M0 96H1280M0 544H1280" stroke="#203a4e"/>
+  <path d="M930 0L1280 350V0Z" fill="#0b2130"/>
+  <circle cx="1094" cy="169" r="117" fill="none" stroke="#4fb8a7" stroke-width="2" opacity=".7"/>
+  <circle cx="1094" cy="169" r="72" fill="none" stroke="#d69a58" opacity=".8"/>
+  <path d="M986 206C1041 150 1092 139 1198 98M1000 112C1075 177 1138 205 1207 223" fill="none" stroke="#7892a4" stroke-width="2" stroke-dasharray="7 8"/>
+  <text x="76" y="92" fill="#55c4b0" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">FUNDAMENTAL INDUSTRIAL RESEARCH</text>
+  <text x="76" y="209" fill="#edf2f5" font-family="Times New Roman, serif" font-size="76" font-weight="700">Industrial Atlas</text>
+  <text x="76" y="278" fill="#a9bac6" font-family="Times New Roman, serif" font-size="31">From physical supply-chain change</text>
+  <text x="76" y="318" fill="#a9bac6" font-family="Times New Roman, serif" font-size="31">to an investable conclusion.</text>
+  <g font-family="Arial, sans-serif" font-size="16" letter-spacing="1">
+    <rect x="76" y="390" width="208" height="52" rx="3" fill="#0d2232" stroke="#315069"/><text x="102" y="422" fill="#e6ecef">MACRO &amp; POLICY</text>
+    <text x="300" y="422" fill="#d69a58" font-size="26">→</text>
+    <rect x="337" y="390" width="236" height="52" rx="3" fill="#0d2232" stroke="#315069"/><text x="363" y="422" fill="#e6ecef">PHYSICAL SYSTEM</text>
+    <text x="589" y="422" fill="#d69a58" font-size="26">→</text>
+    <rect x="626" y="390" width="223" height="52" rx="3" fill="#0d2232" stroke="#315069"/><text x="652" y="422" fill="#e6ecef">ESTIMATES</text>
+    <text x="865" y="422" fill="#d69a58" font-size="26">→</text>
+    <rect x="902" y="390" width="286" height="52" rx="3" fill="#0d2232" stroke="#315069"/><text x="928" y="422" fill="#e6ecef">VALUATION &amp; DECISION</text>
+  </g>
+  <text x="76" y="586" fill="#8095a4" font-family="Arial, sans-serif" font-size="18">Independent research project by Becky Ting</text>
+</svg>

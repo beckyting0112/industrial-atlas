@@ -1,0 +1,32 @@
+.company-card.company-live h3{color:#f4f7fa}
+.company-card.company-live{border-color:#31506a;cursor:pointer}
+.company-card.company-live .entity-dot{box-shadow:0 0 0 3px rgba(79,182,168,.12)}
+.company-card.company-backlog h3{color:#46586b}
+.company-card.company-backlog{cursor:default;opacity:.7}
+.company-card.company-backlog:hover{transform:none;border-color:#1e3046;background:#0d192a}
+.sector-thesis{padding:18px 20px;background:#0d192a;border-left:3px solid #e8743b}
+.sector-thesis span,.company-workplan>b{color:#5fc0ae;font:12px 'IBM Plex Mono'}
+.sector-thesis p{margin:8px 0 0;color:#b5c2cd;font-size:17px;line-height:1.65;max-width:1050px}
+.sector-driver-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.sector-driver-grid article{padding:15px;background:#0d192a;border:1px solid #243a50}
+.sector-driver-grid span{color:#e0a36b;font:12px 'IBM Plex Mono'}
+.sector-driver-grid h3{margin:8px 0 5px;color:#e1e9ef;font-size:18px}
+.sector-driver-grid p{margin:0;color:#7f93a5;font-size:14px;line-height:1.5}
+.company-workplan{margin-top:22px;padding:15px;background:#101f31;border:1px solid #294158}
+.company-workplan p{color:#8195a6;font-size:14px;line-height:1.55}
+.company-workplan a{color:#dfa261;font:13px 'IBM Plex Mono';text-decoration:none}
+.sector-metrics{margin-bottom:22px}
+.sector-pitch{margin-top:18px}
+.sector-scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.sector-scenarios article{padding:16px;background:#0d192a;border-top:3px solid #71879a}
+.sector-scenarios article.bull{border-color:#4fb6a8}.sector-scenarios article.base{border-color:#d6a15f}.sector-scenarios article.bear{border-color:#dc7565}
+.sector-scenarios span,.sector-scenarios b{display:block}.sector-scenarios span{color:#71869a;font:12px 'IBM Plex Mono'}.sector-scenarios b{margin:9px 0;color:#edf3f6;font-size:28px}.sector-scenarios p{color:#8497a8;font-size:14px}
+@media(max-width:900px){.sector-driver-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.sector-driver-grid,.sector-scenarios{grid-template-columns:1fr}}
+.market-badge{display:inline-block;margin-top:6px;padding:3px 8px;font:12px 'IBM Plex Mono';letter-spacing:.02em;border:1px solid #294158}
+.market-badge.live{color:#5fc0ae;border-color:#2f5a52;background:rgba(95,192,174,.08)}
+.market-badge.stale{color:#7f93a5;border-color:#243a50;background:#0d192a}
+.market-badge.pending{color:#5c6d80;border-color:#1e3046;background:#0d192a}
+.market-symbol-note{display:block;margin-top:6px;max-width:520px;color:#5c6d80;font-size:13px;line-height:1.5}
+.coverage-dashboard{margin:18px 0 24px;padding:16px;background:#091522;border:1px solid #31506a;border-top:3px solid #e3a866}.coverage-dashboard>header{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:12px}.coverage-dashboard>header span{color:#5fc0ae;font:12px 'IBM Plex Mono'}.coverage-dashboard>header h2{margin:5px 0 0;color:#edf3f7;font-size:30px}.coverage-dashboard>header p{max-width:520px;margin:0;color:#8094a6;font-size:14px;line-height:1.5}.coverage-table{border:1px solid #294158}.coverage-table>div,.coverage-table>button{display:grid;grid-template-columns:1.1fr .9fr 1.1fr .75fr .75fr 1.5fr;gap:10px;align-items:center;width:100%;padding:11px 12px;text-align:left}.coverage-table>div{background:#14253a;color:#71869a;font:10px 'IBM Plex Mono';text-transform:uppercase}.coverage-table>button{border:0;border-top:1px solid #20364b;background:#0d192a;color:#93a5b4;cursor:pointer}.coverage-table>button:hover{background:#12243a}.coverage-table>button b{color:#edf3f7}.coverage-table>button strong{font:12px 'IBM Plex Mono'}.coverage-table>button strong.long{color:#62c7a4}.coverage-table>button strong.watch{color:#e3a866}.coverage-table>button strong.neutral{color:#91a3b2}.coverage-table>button em{font-style:normal}.coverage-table>button em.positive{color:#62c7a4}.coverage-table>button em.neutral{color:#d3a061}.coverage-table>button small{color:#b4c0c9}.coverage-table>button small i{display:block;margin-top:3px;color:#62788b;font:9px 'IBM Plex Mono';font-style:normal;text-transform:uppercase}@media(max-width:900px){.coverage-dashboard>header{display:block}.coverage-dashboard>header p{margin-top:8px}.coverage-table>div,.coverage-table>button{grid-template-columns:1fr 1fr 1fr}.coverage-table>div span:nth-child(n+4){display:none}.coverage-table>button>*:nth-child(4),.coverage-table>button>*:nth-child(5),.coverage-table>button>*:nth-child(6){display:none}}
+.standard-company-page{max-width:100%}.research-standard{margin:12px 18px 0;padding:12px 14px;background:#091522;border:1px solid #31506a}.research-standard>header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.research-standard>header span{display:block;color:#5fc0ae;font:10px 'IBM Plex Mono'}.research-standard>header b{color:#e7eef3;font-size:17px}.research-standard>header strong{color:#e2a568;font:10px 'IBM Plex Mono'}.research-standard>div{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}.research-standard article{position:relative;min-height:76px;padding:9px;background:#0d192a;border-top:2px solid #55b99b}.research-standard article.partial{border-top-color:#d49e5d}.research-standard article>span{color:#63798c;font:9px 'IBM Plex Mono'}.research-standard article>b,.research-standard article>small,.research-standard article>em{display:block}.research-standard article>b{margin:5px 0;color:#dce6ed;font-size:13px}.research-standard article>small{color:#74899b;font-size:9px;line-height:1.35}.research-standard article>em{position:absolute;right:7px;top:7px;color:#55b99b;font:8px 'IBM Plex Mono';font-style:normal}.research-standard article.partial>em{color:#d49e5d}@media(max-width:1000px){.research-standard>div{grid-template-columns:repeat(4,1fr)}}@media(max-width:600px){.research-standard>header{display:block}.research-standard>header strong{display:block;margin-top:5px}.research-standard>div{grid-template-columns:repeat(2,1fr)}}

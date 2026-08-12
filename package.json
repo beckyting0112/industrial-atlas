@@ -1,0 +1,47 @@
+{
+  "name": "industrial-supply-chain-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=20 <25"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:web": "vite",
+    "dev:api": "node server/index.js",
+    "build": "vite build",
+    "deploy:check": "npm run build && node server/deploy-check.js",
+    "start": "node server/index.js",
+    "db:seed": "node server/seed.js"
+    ,"db:seed:iron-ore": "node server/seed-iron-ore.js && node server/seed-iron-ore-latest.js && node server/seed-iron-ore-trade-routes.js && node server/seed-iron-ore-audit.js && node server/seed-simandou-case.js"
+    ,"db:seed:shipbuilding": "node server/seed-shipbuilding.js"
+    ,"db:seed:shipping-routes": "node server/seed-shipping-routes.js"
+    ,"db:seed:oil-routes": "node server/seed-oil-routes.js"
+    ,"db:seed:disruptions": "node server/seed-disruptions.js"
+    ,"db:seed:steel-shipbuilding": "node server/seed-steel-shipbuilding.js"
+    ,"db:seed:data-refresh-2026": "node server/seed-data-refresh-2026.js"
+    ,"db:seed:nickel-ev": "node server/seed-nickel-ev.js"
+    ,"db:seed:byd-finance": "node server/seed-byd-finance.js"
+    ,"db:seed:data-centers": "node server/seed-data-centers.js"
+    ,"db:seed:portfolio-companies": "node server/seed-portfolio-companies.js"
+    ,"db:seed:primary-research": "node server/seed-primary-research.js"
+    ,"db:seed:steel": "node server/seed-steel.js && node server/seed-steel-phase2.js && node server/seed-steel-concentration.js && node server/seed-steel-product-trade.js && node server/seed-steel-bilateral-trade.js && node server/seed-steel-plants.js && node server/seed-steel-links.js && node server/seed-company-hubs.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "better-sqlite3": "latest",
+    "d3-geo": "^3.1.1",
+    "express": "latest",
+    "lucide-react": "latest",
+    "maplibre-gl": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "topojson-client": "^3.1.0",
+    "vite": "latest",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "latest"
+  }
+}

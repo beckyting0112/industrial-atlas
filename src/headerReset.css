@@ -1,0 +1,12 @@
+/* The original shell stylesheet targets the bare header element for the app masthead.
+   Reset nested semantic headers before component styles are loaded. */
+header:not(.main-header){
+  height:auto;
+  min-height:0;
+  flex:initial;
+  padding:0;
+  border:0;
+  background:none;
+  align-items:initial;
+  justify-content:initial;
+}

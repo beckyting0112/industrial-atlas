@@ -1,0 +1,22 @@
+.research-note{display:grid;grid-template-columns:1fr 300px;gap:28px;padding:24px 0 8px}
+.research-note-main .eyebrow{color:#5fc0ae;font:12px 'IBM Plex Mono';letter-spacing:.04em}
+.research-note-main h1{margin:6px 0 4px;font-size:44px;line-height:1.05}
+.rn-strapline{margin:0 0 18px;color:#e2a568;font-size:17px;font-style:italic}
+.rn-prose{margin:0 0 4px;color:#c2ccd4;font-size:16px;line-height:1.7;max-width:720px}
+.rn-points{display:flex;flex-direction:column;gap:12px;max-width:720px}
+.rn-points p{margin:0;color:#b5c2cd;font-size:16px;line-height:1.7}
+.rn-points p b{color:#edf3f7}
+.rn-risks p b{color:#e0a36b}
+.research-note-sidebar{display:flex;flex-direction:column;gap:14px;padding:16px;height:fit-content;background:#0a1625;border:1px solid #294158;border-top:3px solid #e8743b}
+.rn-byline{padding-bottom:12px;border-bottom:1px solid #21354a}
+.rn-byline span{display:block;color:#5fc0ae;font:10px 'IBM Plex Mono';letter-spacing:.04em}
+.rn-byline b{display:block;margin-top:4px;color:#edf3f7;font-size:17px}
+.rn-keydata>span{display:block;margin-bottom:6px;color:#5fc0ae;font:10px 'IBM Plex Mono';letter-spacing:.04em}
+.rn-keydata table{width:100%;border-collapse:collapse}
+.rn-keydata tr{border-top:1px solid #1e3046}
+.rn-keydata tr:first-child{border-top:0}
+.rn-keydata th{padding:7px 0;color:#7f93a5;font:13px 'IBM Plex Mono';font-weight:400;text-align:left;white-space:nowrap}
+.rn-keydata td{padding:7px 0;color:#edf3f7;font-size:14px;text-align:right;font-weight:600}
+.rn-disclosure{margin:0;padding-top:12px;border-top:1px solid #21354a;color:#5c6d80;font-size:12px;line-height:1.5}
+.rn-compact-detail{max-width:720px;margin:12px 0 0;border-top:1px solid #263a4e}.rn-compact-detail summary{padding:10px 0;color:#86a0b4;font:12px 'IBM Plex Mono';text-transform:uppercase;cursor:pointer}.rn-compact-detail[open] summary{color:#5fc0ae}.rn-compact-detail.risk{margin-top:16px}.rn-compact-detail .rn-points{padding:2px 0 8px}
+@media(max-width:900px){.research-note{grid-template-columns:1fr}.research-note-sidebar{order:-1}}

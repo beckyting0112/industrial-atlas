@@ -1,0 +1,5 @@
+import {db} from "./db.js";
+const companies=[["cleveland-cliffs","Cleveland-Cliffs","usa","Steel","Public"],["equinix","Equinix","usa","Data center infrastructure","Public REIT"]];
+const sources=[["clf-fy2025","Cleveland-Cliffs 2025 full-year results","Cleveland-Cliffs","https://www.clevelandcliffs.com/news/news-releases/detail/693/cleveland-cliffs-reports-fourth-quarter-and-full-year-2025","2026-02-09","2025","company_filing","high","2026-08-09","Revenue, earnings, shipments and 2026 expectations."],["eqix-q1-2026","Equinix Q1 2026 results and raised outlook","Equinix","https://investor.equinix.com/news-events/press-releases/detail/1107/equinix-reports-first-quarter-results-and-raises-full-year","2026-04-29","2026Q1","company_filing","high","2026-08-09","AFFO, revenue, capex and updated 2026 guidance."]];
+db.transaction(()=>{const c=db.prepare("INSERT OR REPLACE INTO companies VALUES (?,?,?,?,?)");companies.forEach(x=>c.run(...x));const s=db.prepare("INSERT OR REPLACE INTO sources VALUES (?,?,?,?,?,?,?,?,?,?)");sources.forEach(x=>s.run(...x));})();
+console.log("Seeded Cleveland-Cliffs and Equinix portfolio profiles.");
