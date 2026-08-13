@@ -48,6 +48,7 @@ npm run news:review -- reject NEWS_ID
 - Publisher tiers are rules-based and require periodic maintenance; a high-quality publisher does not independently verify an event.
 - Observed impact and inference use cautious event-family templates until an analyst edits the record.
 - FT, WSJ and other subscription reporting can be linked during review but is not scraped or republished.
+- Automated collection stores headline, link, publisher and event metadata only. Publisher feed descriptions are not republished. New prose remains `summary pending review` until an original Atlas factual synthesis is added.
 
 ## Promotion path
 
