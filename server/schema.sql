@@ -270,6 +270,21 @@ CREATE TABLE IF NOT EXISTS events (
   price_impact TEXT, freight_impact TEXT, strategic_implication TEXT,
   research_url TEXT, source_id TEXT REFERENCES sources(id)
 );
+CREATE TABLE IF NOT EXISTS news_events (
+  id TEXT PRIMARY KEY, cluster_key TEXT NOT NULL, headline TEXT NOT NULL,
+  publisher TEXT NOT NULL, source_url TEXT NOT NULL UNIQUE,
+  published_at TEXT NOT NULL, collected_at TEXT NOT NULL, last_verified_at TEXT,
+  review_status TEXT NOT NULL DEFAULT 'candidate' CHECK(review_status IN ('candidate','reviewed','published','rejected')),
+  evidence_status TEXT NOT NULL DEFAULT 'reported' CHECK(evidence_status IN ('reported','corroborated','observed')),
+  event_type TEXT NOT NULL, severity TEXT NOT NULL CHECK(severity IN ('low','medium','high','critical')),
+  materiality_score INTEGER NOT NULL, commodity_tags TEXT, country_tags TEXT, route_tags TEXT,
+  source_tier INTEGER NOT NULL DEFAULT 3, source_rationale TEXT,
+  latitude REAL, longitude REAL, location_label TEXT,
+  reported_summary TEXT NOT NULL, summary_provenance TEXT NOT NULL DEFAULT 'summary pending review', observed_impact TEXT NOT NULL, analyst_inference TEXT NOT NULL,
+  monitor_next TEXT, map_expires_at TEXT, active INTEGER NOT NULL DEFAULT 1
+);
+CREATE INDEX IF NOT EXISTS idx_news_events_brief ON news_events(active,review_status,published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_news_events_expiry ON news_events(map_expires_at);
 CREATE TABLE IF NOT EXISTS concepts (
   id TEXT PRIMARY KEY, term TEXT NOT NULL UNIQUE, definition TEXT NOT NULL,
   why_it_matters TEXT, inputs TEXT, outputs TEXT, where_used TEXT,

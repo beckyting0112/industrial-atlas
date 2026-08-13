@@ -14,6 +14,8 @@
     "deploy:check": "npm run build && node server/deploy-check.js",
     "start": "node server/index.js",
     "db:seed": "node server/seed.js"
+    ,"news:pull": "node server/pull-news.js"
+    ,"news:review": "node server/review-news.js"
     ,"db:seed:iron-ore": "node server/seed-iron-ore.js && node server/seed-iron-ore-latest.js && node server/seed-iron-ore-trade-routes.js && node server/seed-iron-ore-audit.js && node server/seed-simandou-case.js"
     ,"db:seed:shipbuilding": "node server/seed-shipbuilding.js"
     ,"db:seed:shipping-routes": "node server/seed-shipping-routes.js"

@@ -7,8 +7,25 @@ import { getFxRate, getQuote, tryLive } from "./market.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 db.exec(readFileSync(resolve(here, "schema.sql"), "utf8"));
+for(const [name,definition] of [["source_tier","INTEGER NOT NULL DEFAULT 3"],["source_rationale","TEXT"],["summary_provenance","TEXT NOT NULL DEFAULT 'summary pending review'"]])if(!db.prepare("PRAGMA table_info(news_events)").all().some(x=>x.name===name))db.exec(`ALTER TABLE news_events ADD COLUMN ${name} ${definition}`);
 const app = express();
 app.use(express.json());
+
+const newsTokens=text=>new Set(String(text||"").toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(x=>x.length>3&&!new Set(["with","from","that","this","after","amid","over","into","says","report","news"]).has(x)));
+const newsSimilarity=(a,b)=>{const left=newsTokens(a),right=newsTokens(b),shared=[...left].filter(x=>right.has(x)).length;return shared/Math.max(1,Math.min(left.size,right.size))};
+const editorialCorroboration=headline=>/grain terminals|novorossiysk/i.test(headline)?[{publisher:"AP",url:"https://apnews.com/article/9eadff0d7590923e3d98c99e2b61150b",tier:1}]:/red sea|houthi/i.test(headline)?[{publisher:"AP",url:"https://apnews.com/article/29115cc1fbc209ed4be2d2f80eabc1bf",tier:1}]:/panama canal/i.test(headline)?[{publisher:"Bloomberg",url:"https://www.bloomberg.com/news/articles/2026-04-16/panama-canal-traffic-jam-spurs-4-million-line-jumping-payment",tier:1},{publisher:"Lloyd's List",url:"https://www.lloydslist.com/LL1156994/Hormuz-crisis-drives-up-Panama-Canal-delays-and-auction-prices",tier:2}]:[];
+const clusterNews=rows=>{const clusters=[];for(const row of rows){const match=clusters.find(c=>(c.location_label&&c.location_label===row.location_label&&c.event_type===row.event_type)||((c.event_type===row.event_type||c.location_label===row.location_label)&&newsSimilarity(c.headline,row.headline)>=.42));if(match){match.related_reports=(match.related_reports||1)+1;match.corroborating_reports=[...(match.corroborating_reports||[]),{publisher:row.publisher,url:row.source_url,tier:row.source_tier}].filter((x,i,a)=>a.findIndex(y=>y.publisher===x.publisher)===i);if(Number(row.source_tier)<Number(match.source_tier)){const score=Math.max(Number(match.materiality_score),Number(row.materiality_score)),reports=match.corroborating_reports;Object.assign(match,{...row,materiality_score:score,severity:score>=85?'critical':score>=70?'high':'medium',related_reports:match.related_reports,corroborating_reports:reports})}}else clusters.push({...row,related_reports:1,corroborating_reports:[{publisher:row.publisher,url:row.source_url,tier:row.source_tier}]})}return clusters.map(cluster=>({...cluster,corroborating_reports:[...editorialCorroboration(cluster.headline),...(cluster.corroborating_reports||[])].filter((x,i,a)=>a.findIndex(y=>y.publisher===x.publisher)===i).sort((a,b)=>Number(a.tier||3)-Number(b.tier||3))}))};
+
+app.get("/api/news/morning", (_req,res)=>{
+  db.prepare("UPDATE news_events SET active=0 WHERE map_expires_at IS NOT NULL AND datetime(map_expires_at) < datetime('now')").run();
+  const rows=db.prepare(`SELECT * FROM news_events WHERE active=1 AND review_status!='rejected' AND materiality_score>=58 AND datetime(published_at)>=datetime('now','-48 hours') ORDER BY materiality_score DESC,published_at DESC`).all();
+  const clustered=clusterNews(rows),brief=clustered.slice(0,3);
+  const map_events=clustered.filter(x=>x.latitude!=null&&x.longitude!=null&&x.map_expires_at&&new Date(x.map_expires_at)>new Date()).slice(0,12);
+  res.json({generated_at:new Date().toISOString(),review_required:brief.some(x=>x.review_status==='candidate'),brief,map_events});
+});
+
+app.get("/api/news/review",(_req,res)=>res.json(clusterNews(db.prepare(`SELECT * FROM news_events WHERE active=1 AND review_status!='rejected' ORDER BY materiality_score DESC,published_at DESC LIMIT 80`).all())));
+app.patch("/api/news/review/:id",(req,res)=>{const {status,reported_summary,summary_provenance}=req.body||{};if(status&&!['candidate','reviewed','published','rejected'].includes(status))return res.status(400).json({error:'Invalid review status'});if(!status&&!reported_summary)return res.status(400).json({error:'No review update supplied'});const result=db.prepare(`UPDATE news_events SET review_status=COALESCE(?,review_status),reported_summary=COALESCE(?,reported_summary),summary_provenance=COALESCE(?,summary_provenance),last_verified_at=? WHERE id=?`).run(status||null,reported_summary||null,summary_provenance||null,new Date().toISOString(),req.params.id);if(!result.changes)return res.status(404).json({error:'Event not found'});res.json({ok:true,id:req.params.id,status:status||'summary updated'})});
 
 app.get("/api/atlas", (_req, res) => {
   const assets = db.prepare(`

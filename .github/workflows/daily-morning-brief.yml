@@ -1,0 +1,44 @@
+name: Refresh Morning Brief
+
+on:
+  schedule:
+    # 12:00 UTC = 8:00 a.m. New York during daylight saving time.
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-morning-brief
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Pull and rank morning news
+        run: npm run news:pull
+      - name: Verify site and data snapshot
+        run: npm run deploy:check
+      - name: Commit refreshed SQLite snapshot
+        shell: bash
+        run: |
+          git config user.name "industrial-atlas-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/atlas.sqlite
+          if git diff --cached --quiet; then
+            echo "No morning-news changes to commit."
+            exit 0
+          fi
+          git commit -m "data: refresh morning brief $(date -u +%F)"
+          git push origin HEAD:main
