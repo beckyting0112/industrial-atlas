@@ -3,10 +3,12 @@ services:
     name: industrial-supply-chain-atlas
     runtime: node
     plan: free
+    repo: https://github.com/beckyting0112/industrial-atlas
+    branch: main
     buildCommand: npm ci && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
-    autoDeploy: true
+    autoDeployTrigger: commit
     envVars:
       - key: NODE_VERSION
         value: 22.22.0
