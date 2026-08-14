@@ -54,3 +54,14 @@ jobs:
           fi
           git commit -m "data: refresh morning brief $(date -u +%F)"
           git push origin HEAD:main
+      - name: Trigger Render deployment
+        shell: bash
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "::warning::RENDER_DEPLOY_HOOK_URL is not configured; GitHub data refreshed but Render was not explicitly redeployed."
+            exit 0
+          fi
+          curl --fail --silent --show-error --request POST "$RENDER_DEPLOY_HOOK_URL"
+          echo "Render deployment requested."
