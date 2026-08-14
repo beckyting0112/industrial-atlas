@@ -138,7 +138,7 @@ app.get("/api/countries/:id", (req, res) => {
   res.json({ ...country, assets, observations });
 });
 
-app.get("/api/health", (_req, res) => res.json({ ok: true }));
+app.get("/api/health", (_req, res) => {const news=db.prepare("SELECT MAX(published_at) latest_published_at,MAX(collected_at) latest_collected_at,COUNT(*) news_rows FROM news_events").get();res.json({ok:true,commit:process.env.RENDER_GIT_COMMIT||process.env.GITHUB_SHA||"local",...news})});
 
 app.get("/api/directory", (_req, res) => {
   const count = table => db.prepare(`SELECT COUNT(*) count FROM ${table}`).get().count;
