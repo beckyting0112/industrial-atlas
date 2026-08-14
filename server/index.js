@@ -18,8 +18,8 @@ const clusterNews=rows=>{const clusters=[];for(const row of rows){const match=cl
 
 app.get("/api/news/morning", (_req,res)=>{
   db.prepare("UPDATE news_events SET active=0 WHERE map_expires_at IS NOT NULL AND datetime(map_expires_at) < datetime('now')").run();
-  const rows=db.prepare(`SELECT * FROM news_events WHERE active=1 AND review_status!='rejected' AND materiality_score>=58 AND datetime(published_at)>=datetime('now','-48 hours') ORDER BY materiality_score DESC,published_at DESC`).all();
-  const clustered=clusterNews(rows),brief=clustered.slice(0,3);
+  const rows=db.prepare(`SELECT * FROM news_events WHERE active=1 AND review_status!='rejected' AND materiality_score>=58 AND datetime(published_at)>=datetime('now','-72 hours') ORDER BY materiality_score DESC,published_at DESC`).all();
+  const clustered=clusterNews(rows),freshCutoff=Date.now()-36*3600e3,fresh=clustered.filter(x=>new Date(x.published_at).getTime()>=freshCutoff),reserve=clustered.filter(x=>new Date(x.published_at).getTime()<freshCutoff),brief=[...fresh,...reserve].slice(0,3);
   const map_events=clustered.filter(x=>x.latitude!=null&&x.longitude!=null&&x.map_expires_at&&new Date(x.map_expires_at)>new Date()).slice(0,12);
   res.json({generated_at:new Date().toISOString(),review_required:brief.some(x=>x.review_status==='candidate'),brief,map_events});
 });
